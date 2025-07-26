@@ -17,8 +17,9 @@ function divide(a,b) {
 
 // Display
 let num1 = 0;
-let operator;
-let num2;
+let num2 = 0;
+let reset = true;
+let once;
 
 function operate(num1, num2, operator) {
     if(operator === "+") {
@@ -38,12 +39,12 @@ const display = document.querySelector("#display");
 
 digitButtons.forEach((digitButton) => {
     digitButton.addEventListener("click", () => {
-        if (display.textContent == 0) {
-            display.textContent = digitButton.textContent;
-        } else {
-            display.textContent += digitButton.textContent;
+        once = 0;
+        if (reset) { // Reset
+            display.textContent = "";
+            reset = false;
         }
-        num2 = display.textContent;
+        display.textContent = display.textContent + digitButton.textContent;
         
     });
 });
@@ -71,7 +72,6 @@ const subtractButton = document.querySelector("#subtract");
 const addButton = document.querySelector("#add");
 
 divideButton.addEventListener("click", () => {
-    
    
 });
 multiplyButton.addEventListener("click", () => {
@@ -79,7 +79,27 @@ multiplyButton.addEventListener("click", () => {
 subtractButton.addEventListener("click", () => {
 });
 addButton.addEventListener("click", () => {
+    once++;
+    if (once === 1) {
+        num1 = parseInt(display.textContent);
+        console.log(num2 = operate(parseInt(num1), parseInt(num2), "+"));
+        reset = true;
+        display.textContent = num2;
+    }
+
+   
+});
+
+const operateButton = document.querySelector("#operate");
+operateButton.addEventListener("click", () => {
+    once++;
+    if (once === 1) {
+        num1 = parseInt(display.textContent);
+        console.log(num2 = operate(parseInt(num1), parseInt(num2), "+"));
+        reset = true;
+        display.textContent = num2;
+    }
     
-    display.textContent = num1;
+
 });
 
