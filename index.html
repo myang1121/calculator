@@ -9,37 +9,37 @@
 
 </head>
 <body>
-    <p id = "display">00000000</p>
+    <p id = "display">0</p>
     <div>
-        <button>AC</button> <!--Switch between ← & AC--> 
-        <button>+/-</button>
-        <button>%</button>
+        <button id = "clear">AC</button> <!--Switch between ← (backspace, undo last input) & AC--> 
+        <button id = "sign">+/-</button>
+        <button id = "percent">%</button>
     </div>
-    <div>
+    <div class = "digitButton">
         <button>7</button>
         <button>8</button>
         <button>9</button>
     </div>
-    <div>
+    <div class = "digitButton">
         <button>4</button>
         <button>5</button>
         <button>6</button>
     </div>
-    <div>
+    <div class = "digitButton">
         <button>1</button>
         <button>2</button>
         <button>3</button>
     </div>
     <div>
-        <button>:D</button>
+        <button>:D</button> <!--Alternatively, ← backspace -->
         <button>0</button>
         <button>.</button>
     </div>
     <div id = "operators">
-        <button>÷</button>
-        <button>x</button>
-        <button>-</button>
-        <button>+</button>
+        <button id = "divide">÷</button>
+        <button id = "multiply">x</button>
+        <button id = "subtract">-</button>
+        <button id = "add">+</button>
         <button>=</button>
     </div>
 </body>
