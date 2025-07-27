@@ -11,8 +11,13 @@ function multiply(a,b) {
     return a * b;
 }
 
-function divide(a,b) {
-    return a/b;
+function divide(a,b) { // num2/num1
+    let result = a/b;
+    if (!(Number.isFinite(result)) && (initialDisplay > 0)) {
+        return "Error! Cannot perform division by zero."
+    } else {
+        return a/b;
+    }
 }
 
 // Display
@@ -20,6 +25,9 @@ let num1 = 0;
 let num2 = 0;
 let reset = true;
 let once;
+
+let initialDisplay = 0;
+let lastOperator;
 
 function operate(num1, num2, operator) {
     if(operator === "+") {
@@ -45,6 +53,7 @@ digitButtons.forEach((digitButton) => {
             reset = false;
         }
         display.textContent = display.textContent + digitButton.textContent;
+        num2 = parseInt(display.textContent);
         
     });
 });
@@ -54,6 +63,7 @@ clearButton.addEventListener("click", () => {
     display.textContent = 0;
     num1 = 0;
     num2 = 0;
+    reset = true;
 }); 
 
 const signButton = document.querySelector("#sign");
@@ -73,33 +83,66 @@ const addButton = document.querySelector("#add");
 
 divideButton.addEventListener("click", () => {
    
-});
-multiplyButton.addEventListener("click", () => {
-});
-subtractButton.addEventListener("click", () => {
-});
-addButton.addEventListener("click", () => {
-    once++;
-    if (once === 1) {
-        num1 = parseInt(display.textContent);
-        console.log(num2 = operate(parseInt(num1), parseInt(num2), "+"));
-        reset = true;
-        display.textContent = num2;
+   once++;
+    if (once === 1 ) { 
+        if(num1 == 0 && initialDisplay === 0) { // num1 == 0 is the initial screen display
+            if (num2 == 0) {
+                num2 = 1;
+                console.log("jj");
+            } else {
+                num1 = num2 * num2; //Ignore initial screen display
+                console.log("hii");
+            }
+            console.log(num1 = operate(parseInt(num1), parseInt(num2), "/"));
+            reset = true;
+            display.textContent = num1;
+        } else {
+            console.log(num1 = operate(parseInt(num1), parseInt(num2), lastOperator));
+            reset = true;
+            display.textContent = num1;
+        }
+        
     }
 
-   
+    lastOperator = "/";
+    initialDisplay++;
+});
+multiplyButton.addEventListener("click", () => {
+    
+    lastOperator = "*";
+    initialDisplay++;
+});
+subtractButton.addEventListener("click", () => {
+    
+    lastOperator = "-";
+    initialDisplay++;
+});
+addButton.addEventListener("click", () => {
+    
+    once++;
+    if (once === 1) {
+        if(initialDisplay === 0) { // Initial screen display
+            console.log(num1 = operate(parseInt(num1), parseInt(num2), "+"));
+            reset = true;
+            display.textContent = num1;
+        } else {
+            console.log(num1 = operate(parseInt(num1), parseInt(num2), lastOperator));
+            reset = true;
+            display.textContent = num1;
+        }
+    }
+
+
+    lastOperator = "+";
 });
 
 const operateButton = document.querySelector("#operate");
 operateButton.addEventListener("click", () => {
     once++;
     if (once === 1) {
-        num1 = parseInt(display.textContent);
-        console.log(num2 = operate(parseInt(num1), parseInt(num2), "+"));
+        console.log(num1 = operate(parseInt(num1), parseInt(num2), lastOperator));
         reset = true;
-        display.textContent = num2;
-    }
-    
-
+        display.textContent = num1;
+    }    
 });
 
