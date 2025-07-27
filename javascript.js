@@ -88,10 +88,8 @@ divideButton.addEventListener("click", () => {
         if(num1 == 0 && initialDisplay === 0) { // num1 == 0 is the initial screen display
             if (num2 == 0) {
                 num2 = 1;
-                console.log("jj");
             } else {
                 num1 = num2 * num2; //Ignore initial screen display
-                console.log("hii");
             }
             console.log(num1 = operate(parseInt(num1), parseInt(num2), "/"));
             reset = true;
@@ -109,11 +107,38 @@ divideButton.addEventListener("click", () => {
 });
 multiplyButton.addEventListener("click", () => {
     
+    once++;
+    if (once === 1 ) { 
+        if(num1 == 0 && initialDisplay === 0) { // num1 == 0 is the initial screen display
+            num1 = 1;
+            console.log(num1 = operate(parseInt(num1), parseInt(num2), "*"));
+            reset = true;
+            display.textContent = num1;
+        } else {
+            console.log(num1 = operate(parseInt(num1), parseInt(num2), lastOperator));
+            reset = true;
+            display.textContent = num1;
+        }
+        
+    }
+
     lastOperator = "*";
     initialDisplay++;
 });
 subtractButton.addEventListener("click", () => {
     
+    once++;
+    if (once === 1) {
+        if(initialDisplay === 0) { // Initial screen display
+            console.log(num1 = operate(parseInt(num1), parseInt(num2), "-"));
+            reset = true;
+            display.textContent = num1;
+        } else {
+            console.log(num1 = operate(parseInt(num1), parseInt(num2), lastOperator));
+            reset = true;
+            display.textContent = num1;
+        }
+    }
     lastOperator = "-";
     initialDisplay++;
 });
@@ -134,6 +159,7 @@ addButton.addEventListener("click", () => {
 
 
     lastOperator = "+";
+    initialDisplay++;
 });
 
 const operateButton = document.querySelector("#operate");
