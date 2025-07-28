@@ -63,7 +63,10 @@ clearButton.addEventListener("click", () => {
     display.textContent = 0;
     num1 = 0;
     num2 = 0;
-    reset = true;
+    reset = true; 
+    once;
+    initialDisplay = 0;
+    lastOperator;
 }); 
 
 const signButton = document.querySelector("#sign");
