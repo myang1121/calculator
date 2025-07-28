@@ -50,6 +50,7 @@ digitButtons.forEach((digitButton) => {
         once = 0;
         if (display.textContent === "-0") {
             display.textContent = "-" + digitButton.textContent;
+            reset = false;
         } else {
             if (reset) { // Reset
                 display.textContent = "";
