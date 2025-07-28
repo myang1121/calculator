@@ -48,11 +48,15 @@ const display = document.querySelector("#display");
 digitButtons.forEach((digitButton) => {
     digitButton.addEventListener("click", () => {
         once = 0;
-        if (reset) { // Reset
-            display.textContent = "";
-            reset = false;
+        if (display.textContent === "-0") {
+            display.textContent = "-" + digitButton.textContent;
+        } else {
+            if (reset) { // Reset
+                display.textContent = "";
+                reset = false;
+            }
+            display.textContent = display.textContent + digitButton.textContent;
         }
-        display.textContent = display.textContent + digitButton.textContent;
         num2 = parseInt(display.textContent);
         
     });
@@ -71,7 +75,22 @@ clearButton.addEventListener("click", () => {
 
 const signButton = document.querySelector("#sign");
 signButton.addEventListener("click", () => {
-    display.textContent *= -1;
+    //display.textContent *= -1;
+    // Toggle sign
+    if (!(typeof lastOperator === 'undefined')) { // lastOperator +, -, *, /
+        display.textContent = "-0";
+    } else {
+        if(display.textContent[0] === "0") {
+            let displayContent = display.textContent.split("");
+            displayContent.splice(0, 0, "-"); // +0 to -0
+            display.textContent = displayContent.join("");
+        } else {
+            // displayContent.splice(0, 0, "-"); 
+            // // + to - 
+            display.textContent *= -1;
+        }
+    } 
+    num2 = parseInt(display.textContent);
 });
 
 const percentButton = document.querySelector("#percent");
